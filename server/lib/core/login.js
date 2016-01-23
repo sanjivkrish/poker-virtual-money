@@ -4,13 +4,12 @@ exports.userLogin = function(data) {
     var userInfo = loginFile.getUser(data.name)
     if (userInfo !== null) {
         if (userInfo.password === data.password) {
-            return userInfo;
+            return {status:true, info:userInfo};
         } else {
-            return 'Password you have entered is invalid'
+            return {status:false, msg:'Password you have entered is invalid'};
         }
     } else {
-        console.log(data);
         loginFile.setUser(data);
-        return 'User added';
+        return {status:true, info:data};
     }
 };
