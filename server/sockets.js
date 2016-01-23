@@ -17,8 +17,7 @@ module.exports = function(server) {
 
     connection.on('message', function(message) {
         if (message.type === 'utf8') {
-            // Logic goes here
-            // console.log(message.utf8Data);
+            delegateMessage(JSON.parse(message.utf8Data), connection);
             // connection.sendUTF(message.utf8Data);
         } else if (message.type === 'binary') {
            // Not implemented
@@ -33,3 +32,22 @@ module.exports = function(server) {
 });
     
 };
+
+//
+// Redirects the message to the appropriate function
+//
+function delegateMessage (message, connection) {
+    var sendData;
+
+    switch (message.type) {
+        case 'login':
+            sendData = require('./lib/core/login.js').userLogin(message.data);
+            break;
+        default:
+            sendData = 'Not defined';
+    }
+    if (sendData) {
+        connection.sendUTF(JSON.stringify(sendData));
+    }
+
+}
