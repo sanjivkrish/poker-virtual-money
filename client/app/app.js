@@ -4,14 +4,12 @@ angular.module('pokerVirtualMoneyApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute',
+  'ui.router',
   'ui.bootstrap'
 ])
-  .config(function ($routeProvider, $locationProvider) {
-    $routeProvider
-      .otherwise({
-        redirectTo: '/login'
-      });
+  .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+    $urlRouterProvider
+      .otherwise('/login');
 
     $locationProvider.html5Mode(true);
   });
