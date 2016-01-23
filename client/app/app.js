@@ -10,7 +10,7 @@ angular.module('pokerVirtualMoneyApp', [
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/login'
       });
 
     $locationProvider.html5Mode(true);
