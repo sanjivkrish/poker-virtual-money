@@ -2,15 +2,26 @@
 
 angular.module('pokerVirtualMoneyApp')
   .factory('socket', function () {
-    // Service logic
-    // ...
 
-    var meaningOfLife = 42;
+    var socket = {};
 
-    // Public API here
-    return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
+    socket.ws = new WebSocket('ws://localhost:9000');
+
+    //
+    // Message from server
+    //
+    socket.ws.onmessage = function(message) {
+        var obj = JSON.parse(message.data)
+        // Logic goes here
+        // console.log(obj);
     };
+
+    //
+    // Message to serve
+    //
+    socket.emit = function(message) {
+        socket.ws.send(JSON.stringify(message));
+    };
+
+    return socket;
   });
