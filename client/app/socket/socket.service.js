@@ -11,9 +11,9 @@ angular.module('pokerVirtualMoneyApp')
     // Message from server
     //
     socket.ws.onmessage = function(message) {
-        var obj = JSON.parse(message.data)
+        var obj = JSON.parse(message.data);
         // Logic goes here
-        // console.log(obj);
+         console.log(obj);
     };
 
     //
