@@ -5,6 +5,6 @@ angular.module('pokerVirtualMoneyApp')
 
     $scope.login = function() {
         // your code goes here
-        // socket.emit({});
+         socket.emit({type:'login', data:{name: $scope.user.name, password: $scope.user.pwd}});
     };
   });
