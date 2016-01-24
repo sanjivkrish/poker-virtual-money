@@ -1,0 +1,7 @@
+{
+    "game": {
+        "playerCount": 5,
+        "initialAmount": 500,
+        "smallBlind": 1
+    }
+}
