@@ -2,15 +2,16 @@
 
 angular.module('pokerVirtualMoneyApp')
   .factory('session', function () {
-    // Service logic
-    // ...
+    var session = {};
 
-    var meaningOfLife = 42;
+    session.getCurrentUser = function() {
+        return session.user;
+    };
+
+    session.setCurrentUser = function(obj) {
+        session.user = obj;
+    };
 
     // Public API here
-    return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
-    };
+    return session;
   });
