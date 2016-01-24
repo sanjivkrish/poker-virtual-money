@@ -1,14 +1,5 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
-
-<header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>POKER</h1>
-    <p class="lead">Kick-start your game</p>
-  </div>
-</header>
-
-<div class="container">
-
+<div class="container" ng-repeat="user in users">
+    {{user.name}}
 </div>
 
 <footer class="footer">
