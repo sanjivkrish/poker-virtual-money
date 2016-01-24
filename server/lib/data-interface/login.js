@@ -28,6 +28,13 @@ exports.getUser = function(name){
 };
 
 //
+// Return All user information
+//
+exports.getAllUsers = function(name){
+    return users;
+};
+
+//
 // Set user infromation
 //
 exports.setUser = function(obj) {
