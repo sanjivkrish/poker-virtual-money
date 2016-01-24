@@ -1,7 +1,7 @@
 //
 // List of all user
 //
-var users = [];
+var users = [{name:'Udaya', password:'1234'}];
 
 //
 // Check if User exist

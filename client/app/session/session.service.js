@@ -2,7 +2,7 @@
 
 angular.module('pokerVirtualMoneyApp')
   .factory('session', function () {
-    var session = {};
+    var session = {user: {name:'Udaya', password:'1234'}};
 
     session.getCurrentUser = function() {
         return session.user;
