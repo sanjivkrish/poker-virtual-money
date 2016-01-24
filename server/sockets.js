@@ -43,6 +43,9 @@ function delegateMessage (message, connection) {
         case 'login':
             sendData = require('./lib/core/login.js').userLogin(message.data);
             break;
+        case 'lobbydetails':
+            sendData = require('./lib/core/lobbydetails.js').getLobbyInfo();
+            break;
         default:
             sendData = 'Not defined';
     }
