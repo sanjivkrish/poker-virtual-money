@@ -2,7 +2,17 @@
 
 angular.module('pokerVirtualMoneyApp')
   .factory('session', function () {
-    var session = {user: {name:'Udaya', password:'1234'}};
+
+    //
+    // Holds the default user for development mode
+    //
+    var session = {
+        user: {name:'Udaya', password:'1234'}
+    };
+
+//    var session = {
+//        user: {}
+//    };
 
     session.getCurrentUser = function() {
         return session.user;
