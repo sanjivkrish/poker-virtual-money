@@ -1,7 +1,9 @@
 //
 // List of all user
 //
-var users = [{name:'Udaya', password:'1234'}];
+//var users = [{name:'Udaya', password:'1234'}];
+var users = [];
+var connectedUsers = [];
 
 //
 // Check if User exist
@@ -31,7 +33,11 @@ exports.getUser = function(name){
 // Return All user information
 //
 exports.getAllUsers = function(name){
-    return users;
+    var array = [];
+    for (var user in users) {
+        array.push(users[user].name);
+    }
+    return array;
 };
 
 //
@@ -43,6 +49,22 @@ exports.setUser = function(obj) {
     } else {
         return 'User already Exist';
     }
-        
 };
 
+exports.getConnectedUsers = function () {
+    return connectedUsers;
+};
+
+exports.setConnectedUser = function (name) {
+    if (connectedUsers.indexOf(name) === -1) {
+        connectedUsers.push(name);
+    }
+};
+
+exports.removeConnectedUser = function (name) {
+    var index = connectedUsers.indexOf(name);
+
+    if (index !== -1) {
+        connectedUsers.splice(index, 1);
+    }
+};
