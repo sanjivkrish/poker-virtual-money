@@ -1,22 +1,12 @@
 'use strict';
 
 angular.module('pokerVirtualMoneyApp')
-  .controller('MainController', function ($scope, $state, session, socket) {
-        var user = session.getCurrentUser();
-        console.log(user);
-        //if (user === undefined) {
-        //    $state.go('login');
-        //} else {
-            var promise = socket.emit({type:'lobbydetails', data:{name: user.name}});
-            promise.then(function(obj) {
-                if (obj) {
-                    $scope.users = obj.users;
-                } else {
-                    // wrong password
-                }
-            },
-            function() {
-                console.log("socket communication failed");
-            });
-        //}
+  .controller('MainController', function ($scope, $state, session) {
+        $scope.user = session.getCurrentUser();
+
+        if (Object.keys($scope.user).length === 0) {
+            $state.go('login');
+        } else {
+            // Rediect to arena controller
+        }
   });
