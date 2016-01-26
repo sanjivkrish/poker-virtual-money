@@ -43,13 +43,12 @@ angular.module('pokerVirtualMoneyApp')
         $rootScope.$broadcast('login', data);
     });
 
-    socket.on('getUsers', function(data){
-        $rootScope.$broadcast('getUsers', data);
+    socket.on('getinitarena', function(data){
+        $rootScope.$broadcast('getinitarena', data);
     });
     
-    socket.on('updateusers', function(data){
-        console.log('update 1', data);
-        $rootScope.$broadcast('updateusers', data);
+    socket.on('broadcastarena', function(data){
+        $rootScope.$broadcast('broadcastarena', data);
     });
 
     socket.on('disconnect', function(){
