@@ -6,6 +6,15 @@ angular.module('pokerVirtualMoneyApp')
       .state('home', {
         url: '/',
         templateUrl: 'app/main/main.html',
-        controller: 'MainController'
+        controller: 'MainController',
+        resolve: {
+            mainSession : ['session', '$state', function (session, $state) {
+                session.isLoginValid().then(function() {
+                    $state.go('login');
+                }, function() {
+                    return '';
+                });
+            }]
+        }
       });
   });
