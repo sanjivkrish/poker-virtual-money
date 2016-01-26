@@ -12,7 +12,7 @@ angular.module('pokerVirtualMoneyApp')
                 session.isLoginValid().then(function() {
                     $state.go('login');
                 }, function() {
-                    return '';
+                    $state.go('arena');
                 });
             }]
         }
