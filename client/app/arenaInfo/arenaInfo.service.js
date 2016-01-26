@@ -1,16 +1,15 @@
 'use strict';
 
 angular.module('pokerVirtualMoneyApp')
-  .factory('arenaInfo', function () {
-    // Service logic
-    // ...
+  .factory('arenaInfo', function (socket, $rootScope, session) {
 
-    var meaningOfLife = 42;
+    var arenaInfo = {};
+    socket.emit('getinitarena', session.user.name);
+
+    $rootScope.$on('broadcastarena', function(evt, obj) {
+        console.log(obj);
+    });
 
     // Public API here
-    return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
-    };
+    return arenaInfo;
   });
