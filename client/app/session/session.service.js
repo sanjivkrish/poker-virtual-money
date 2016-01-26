@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('pokerVirtualMoneyApp')
-  .factory('session', function () {
+  .factory('session', function ($q) {
 
     //
     // Holds the default user for development mode
@@ -13,6 +13,17 @@ angular.module('pokerVirtualMoneyApp')
 //    var session = {
 //        user: {}
 //    };
+
+    session.isLoginValid = function() {
+        var defered = $q.defer();
+
+        if (Object.keys(session.user).length === 0) {
+            defered.resolve();
+        } else {
+            defered.reject();
+        }
+        return defered.promise;
+    };
 
     session.getCurrentUser = function() {
         return session.user;
