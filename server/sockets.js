@@ -6,51 +6,25 @@
 
 var errors = require('./components/errors');
 var path = require('path');
-var WebSocketServer  = require('websocket').server; 
+var sendData;
 
-module.exports = function(server) {
-    var wsServer = new WebSocketServer({httpServer: server});
+module.exports = function(io) {
 
-    wsServer.on('request', function(request) {
+    io.on('connection', function(socket) {
+        console.log('socket connected');
 
-    var connection = request.accept();
+        socket.on('login', function(data) {
+            sendData = require('./lib/core/login.js').userLogin(data);
+            socket.emit('login', sendData);
+        });
 
-    connection.on('message', function(message) {
-        if (message.type === 'utf8') {
-            delegateMessage(JSON.parse(message.utf8Data), connection);
-            // connection.sendUTF(message.utf8Data);
-        } else if (message.type === 'binary') {
-           // Not implemented
-        } else {
-           // Not implemented
-        }
-    });
-    connection.on('close', function(reasonCode, description) {
-        // Logic goes here
-        console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
-    });
-});
-    
-};
-
-//
-// Redirects the message to the appropriate function
-//
-function delegateMessage (message, connection) {
-    var sendData;
-
-    switch (message.type) {
-        case 'login':
-            sendData = require('./lib/core/login.js').userLogin(message.data);
-            break;
-        case 'lobbydetails':
+        socket.on('lobbydetails', function(data) {
             sendData = require('./lib/core/lobbydetails.js').getLobbyInfo();
-            break;
-        default:
-            sendData = 'Not defined';
-    }
-    if (sendData) {
-        connection.sendUTF(JSON.stringify(sendData));
-    }
+            socket.emit('lobbydetails', sendData);
+        });
 
-}
+        socket.on('disconnect', function() {
+            console.log('socket Disconnected');
+        });
+    });
+};
