@@ -38,12 +38,20 @@ angular.module('pokerVirtualMoneyApp')
     socket.on('connect', function(){
         console.log('Web socket connected');
     });
+
     socket.on('login', function(data){
         $rootScope.$broadcast('login', data);
     });
-    socket.on('hi', function(data){
-        $rootScope.$broadcast('hi', data);
+
+    socket.on('getUsers', function(data){
+        $rootScope.$broadcast('getUsers', data);
     });
+    
+    socket.on('updateusers', function(data){
+        console.log('update 1', data);
+        $rootScope.$broadcast('updateusers', data);
+    });
+
     socket.on('disconnect', function(){
         console.log('Web socket disconnected');
     });

@@ -6,13 +6,13 @@ angular.module('pokerVirtualMoneyApp')
     //
     // Holds the default user for development mode
     //
-    var session = {
-        user: {name:'Udaya', password:'1234'}
-    };
-
 //    var session = {
-//        user: {}
+//        user: {name:'Udaya', password:'1234'}
 //    };
+
+    var session = {
+        user: {}
+    };
 
     session.isLoginValid = function() {
         var defered = $q.defer();
