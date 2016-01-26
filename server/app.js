@@ -14,7 +14,10 @@ var app = express();
 var server = require('http').createServer(app);
 require('./config/express')(app);
 require('./routes')(app);
-require('./sockets')(server);
+var io = require('socket.io')(server, {
+    path : '/socket.io-client'
+});
+require('./sockets')(io);
 
 // Start server
 server.listen(config.port, config.ip, function () {
